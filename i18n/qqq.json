@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sophivorus"
+		]
+	},
+	"searchparserfunction-desc": "{{desc|name=SearchParserFunction|url=https://www.mediawiki.org/wiki/Extension:SearchParserFunction}}",
+	"searchparserfunction-no-query": "Error message for empty searches.",
+	"searchparserfunction-no-template": "Error message when the template format is used and no template is specified."
+}

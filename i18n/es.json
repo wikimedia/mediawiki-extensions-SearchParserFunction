@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sophivorus"
+		]
+	},
+	"searchparserfunction-desc": "Agrega una función para buscar, formatear y mostrar los resultados en las páginas wiki.",
+	"searchparserfunction-no-query": "Por favor incuye algún término de búsqueda.",
+	"searchparserfunction-no-template": "El parámetro 'template' es obligatorio al utilizar el formato de plantilla."
+}

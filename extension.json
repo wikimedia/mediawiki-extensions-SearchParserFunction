@@ -1,0 +1,27 @@
+{
+	"name": "SearchParserFunction",
+	"version": "1.0",
+	"author": "[https://www.mediawiki.org/wiki/User:Sophivorus Sophivorus]",
+	"url": "https://www.mediawiki.org/wiki/Extension:SearchParserFunction",
+	"descriptionmsg": "searchparserfunction-desc",
+	"license-name": "GPL-3.0-or-later",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.39.0"
+	},
+	"MessagesDirs": {
+		"SearchParserFunction": [
+			"i18n"
+		]
+	},
+	"ExtensionMessagesFiles": {
+		"SearchParserFunctionAlias": "SearchParserFunction.alias.php"
+	},
+	"AutoloadClasses": {
+		"SearchParserFunction": "SearchParserFunction.php"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "SearchParserFunction::onParserFirstCallInit"
+	},
+	"manifest_version": 2
+}
