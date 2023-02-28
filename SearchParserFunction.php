@@ -39,7 +39,7 @@ class SearchParserFunction {
 		$interwiki = $params['interwiki'] ?? null;
 		$rewrites = $params['rewrites'] ?? null;
 		$sort = $params['sort'] ?? null;
-		$format = strtolower( $params['format'] ?? 'list' );
+		$format = strtolower( $params['format'] ?? null );
 
 		// Build query
 		$query = [
@@ -59,6 +59,7 @@ class SearchParserFunction {
 			'srenablerewrites' => $rewrites,
 			'srsort' => $sort,
 		];
+		$query = array_filter( $query );
 
 		// Allow others to modify the query
 		Hooks::run( 'SearchParserFunctionQuery', [ &$query, $params ] );
@@ -96,7 +97,7 @@ class SearchParserFunction {
 		$output = '';
 		switch ( $format ) {
 
-			case 'list':
+			default:
 				$links = $params['links'] ?? true;
 				$links = filter_var( $links, FILTER_VALIDATE_BOOLEAN );
 				$output = '<ul>';
