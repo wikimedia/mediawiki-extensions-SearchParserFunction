@@ -104,7 +104,7 @@ class SearchParserFunction {
 				foreach ( $results as $result ) {
 					$title = $result['title'];
 					if ( $links ) {
-						$title = "[[$title]]";
+						$title = "[[:$title]]";
 					}
 					$output .= "<li>$title</li>";
 				}
