@@ -19,7 +19,6 @@ class SearchParserFunction {
 	 * @return string Search results
 	 */
 	public static function onFunctionHook( Parser $parser, $search = '' ) {
-
 		// Search term is required until we come up with a good fallback
 		$search = trim( $search );
 		if ( !$search ) {
@@ -83,7 +82,7 @@ class SearchParserFunction {
 		$results = array_filter( $results, 'is_array' );
 
 		// Filter the current title
-		$results = array_filter( $results, function ( $result ) use ( $parser ) {
+		$results = array_filter( $results, static function ( $result ) use ( $parser ) {
 			return $result['title'] !== $parser->getTitle()->getFullText();
 		} );
 
