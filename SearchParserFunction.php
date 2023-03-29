@@ -19,22 +19,23 @@ class SearchParserFunction {
 	 * @return string Search results
 	 */
 	public static function onFunctionHook( Parser $parser, $search = '' ) {
-		// Search term is required until we come up with a good fallback
+
+		// Search term is required until we come up with a good fallback or default
 		$search = trim( $search );
 		if ( !$search ) {
 			return self::error( 'searchparserfunction-no-query' );
 		}
 
-		// Process params
+		// Get and process params
 		$params = array_slice( func_get_args(), 2 );
 		$params = self::parseParams( $params );
-		$namespace = $params['namespace'] ?? null;
+		$namespace = str_replace( ',', '|', $params['namespace'] ?? null );
 		$limit = $params['limit'] ?? null;
 		$offset = $params['offset'] ?? null;
 		$profile = $params['profile'] ?? null;
 		$what = $params['what'] ?? 'text';
-		$info = $params['info'] ?? null;
-		$prop = $params['prop'] ?? null;
+		$info = str_replace( ',', '|', $params['info'] ?? null );
+		$prop = str_replace( ',', '|', $params['prop'] ?? null );
 		$interwiki = $params['interwiki'] ?? null;
 		$rewrites = $params['rewrites'] ?? null;
 		$sort = $params['sort'] ?? null;
