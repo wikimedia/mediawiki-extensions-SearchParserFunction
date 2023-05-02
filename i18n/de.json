@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"searchparserfunction-desc": "Fügt eine Parserfunktion zum Suchen, Formatieren und Anzeigen von Ergebnissen in Wikiseiten hinzu",
+	"searchparserfunction-no-query": "Bitte einen Suchbegriff angeben.",
+	"searchparserfunction-no-template": "Der Parameter „template“ ist erforderlich, wenn das Vorlagenformat verwendet wird."
+}
