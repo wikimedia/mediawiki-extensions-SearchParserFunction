@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"searchparserfunction-desc": "Doda funkcijo razčlenjevalnika za iskanje, oblikovanje in prikaz zadetkov na vikistraneh.",
+	"searchparserfunction-no-query": "Prosimo, vključite iskalni izraz.",
+	"searchparserfunction-no-template": "Pri uporabi oblike predloge je potreben parameter »predloga«."
+}

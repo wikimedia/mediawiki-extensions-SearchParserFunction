@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Verdy p"
+		]
+	},
+	"searchparserfunction-desc": "Ajoute une fonction de l’analyseur pour rechercher, mettre en forme et afficher les résultats dans les pages wiki.",
+	"searchparserfunction-no-query": "Veuillez saisir un terme de recherche.",
+	"searchparserfunction-no-template": "Le paramètre « template » (modèle) est obligatoire lors de l’utilisation de la mise en forme par un modèle."
+}

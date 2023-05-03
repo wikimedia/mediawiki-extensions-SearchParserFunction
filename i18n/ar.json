@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Alshamiri1"
+		]
+	},
+	"searchparserfunction-desc": "يضيف وظيفة المحلل اللغوي للبحث عن النتائج وتنسيقها وعرضها في صفحات wiki",
+	"searchparserfunction-no-query": "يرجى تضمين مصطلح البحث.",
+	"searchparserfunction-no-template": "معلمة \"template\" مطلوبة عند استخدام تنسيق القالب."
+}
