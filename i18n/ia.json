@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"searchparserfunction-desc": "Adde un function del analysator syntactic que cerca, formata e monstra resultatos in paginas wiki",
+	"searchparserfunction-no-query": "Per favor include un termino de recerca.",
+	"searchparserfunction-no-template": "Le parametro 'template' es obligatori quando s usa le formato de patrono."
+}
