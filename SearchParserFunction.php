@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+
 class SearchParserFunction {
 
 	/**
@@ -19,7 +21,6 @@ class SearchParserFunction {
 	 * @return string Search results
 	 */
 	public static function onFunctionHook( Parser $parser, $search = '' ) {
-
 		// Search term is required until we come up with a good fallback or default
 		$search = trim( $search );
 		if ( !$search ) {
@@ -62,7 +63,8 @@ class SearchParserFunction {
 		$query = array_filter( $query );
 
 		// Allow others to modify the query
-		Hooks::run( 'SearchParserFunctionQuery', [ &$query, $params ] );
+		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookContainer->run( 'SearchParserFunctionQuery', [ &$query, $params ] );
 
 		// Make API call
 		$context = RequestContext::getMain();
@@ -175,7 +177,7 @@ class SearchParserFunction {
 		}
 
 		// Allow others to add formats or otherwise modify the output
-		Hooks::run( 'SearchParserFunctionOutput', [ &$output, $format, $results, $params, &$parser ] );
+		$hookContainer->run( 'SearchParserFunctionOutput', [ &$output, $format, $results, $params, &$parser ] );
 
 		return $output;
 	}
