@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Bjankuloski06"
+		]
+	},
+	"searchparserfunction-desc": "Додава расчленувачка функција за пребарување, форматирање и приказ на исход во викистраници",
+	"searchparserfunction-no-query": "Внесете поим за пребарување.",
+	"searchparserfunction-no-template": "Параметарот „template“ е задолжителен кога го користите форматот за предлошки."
+}
