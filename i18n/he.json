@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"searchparserfunction-desc": "הוספת פונקציית מפענח לחיפוש, עיצוב והצגת תוצאות בדפי ויקי",
+	"searchparserfunction-no-query": "נא לכלול מונח חיפוש.",
+	"searchparserfunction-no-template": "הפרמטר \"template\" נדרש בעת שימוש בתסדיר התבנית."
+}
