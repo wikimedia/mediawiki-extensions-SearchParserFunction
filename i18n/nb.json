@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"searchparserfunction-desc": "Legger til en parserfunksjon for å søke, formatere og vise søkeresultater på wikisider",
+	"searchparserfunction-no-query": "Inkluder et søkeord.",
+	"searchparserfunction-no-template": "Parameteren «template» er påkrevd når man bruker malformatet."
+}
