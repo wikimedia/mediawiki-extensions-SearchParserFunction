@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sabelöga"
+		]
+	},
+	"searchparserfunction-desc": "Lägger till en parser-funktion för att söka, formatera och visa resultat på wikisidor",
+	"searchparserfunction-no-query": "Inkludera en sökterm.",
+	"searchparserfunction-no-template": "Parametern 'mall' krävs när mallformatet används."
+}
