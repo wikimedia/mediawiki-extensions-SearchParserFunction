@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"searchparserfunction-desc": "添加解析函式以在 wiki 頁面中搜尋、格式化與顯示結果",
+	"searchparserfunction-no-query": "請包含搜尋字詞。",
+	"searchparserfunction-no-template": "使用模板格式時，需要「template」參數。"
+}
