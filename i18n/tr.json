@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda"
+		]
+	},
+	"searchparserfunction-desc": "Viki sayfalarında sonuçları aramak, biçimlendirmek ve görüntülemek için bir ayrıştırıcı işlevi ekler",
+	"searchparserfunction-no-query": "Lütfen bir arama terimi ekleyin.",
+	"searchparserfunction-no-template": "Şablon formatını kullanırken 'şablon' parametresi gereklidir."
+}
