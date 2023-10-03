@@ -30,7 +30,7 @@ class SearchParserFunction {
 		// Get and process params
 		$params = array_slice( func_get_args(), 2 );
 		$params = self::parseParams( $params );
-		$namespace = str_replace( ',', '|', $params['namespace'] ?? null );
+		$namespace = isset( $params['namespace'] ) ? str_replace( ',', '|', $params['namespace'] ) : null;
 		$limit = $params['limit'] ?? null;
 		$offset = $params['offset'] ?? null;
 		$profile = $params['profile'] ?? null;
@@ -40,7 +40,7 @@ class SearchParserFunction {
 		$interwiki = $params['interwiki'] ?? null;
 		$rewrites = $params['rewrites'] ?? null;
 		$sort = $params['sort'] ?? null;
-		$format = strtolower( $params['format'] ?? null );
+		$format = isset( $params['format'] ) ? strtolower( $params['format'] ) : null;
 
 		// Build query
 		$query = [
