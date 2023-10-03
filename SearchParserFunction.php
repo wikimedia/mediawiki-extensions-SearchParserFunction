@@ -35,8 +35,8 @@ class SearchParserFunction {
 		$offset = $params['offset'] ?? null;
 		$profile = $params['profile'] ?? null;
 		$what = $params['what'] ?? 'text';
-		$info = str_replace( ',', '|', $params['info'] ?? null );
-		$prop = str_replace( ',', '|', $params['prop'] ?? null );
+		$info = $params['info'] ? str_replace( ',', '|', $params['info'] ) : null;
+		$prop = $params['prop'] ? str_replace( ',', '|', $params['prop'] ) : null;
 		$interwiki = $params['interwiki'] ?? null;
 		$rewrites = $params['rewrites'] ?? null;
 		$sort = $params['sort'] ?? null;
