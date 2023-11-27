@@ -77,6 +77,19 @@ class SearchParserFunction {
 			$results = $search->searchText( $query );
 		}
 
+		if ( !$results ) {
+			return;
+		}
+
+		if ( $results instanceof Status ) {
+			$status = $results;
+			$results = $status->getValue();
+		}
+
+		if ( !$results ) {
+			return;
+		}
+
 		// Filter the current page
 		$titles = $results->extractTitles();
 		$titles = array_filter( $titles, static function ( $title ) use ( $parser ) {
