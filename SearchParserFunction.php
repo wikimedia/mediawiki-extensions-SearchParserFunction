@@ -17,116 +17,103 @@ class SearchParserFunction {
 	 * Determine the title, parameters, API endpoint and format
 	 *
 	 * @param Parser $parser Parser object
-	 * @param string $search Search query
+	 * @param string $query Search query
 	 * @return string Search results
 	 */
-	public static function onFunctionHook( Parser $parser, $search = '' ) {
-		// Search term is required until we come up with a good fallback or default
-		$search = trim( $search );
-		if ( !$search ) {
+	public static function onFunctionHook( Parser $parser, $query = '' ) {
+		// This is required unless we come up with a good fallback or default
+		$query = trim( $query );
+		if ( !$query ) {
 			return self::error( 'searchparserfunction-no-query' );
 		}
 
 		// Get and process params
 		$params = array_slice( func_get_args(), 2 );
 		$params = self::parseParams( $params );
-		$namespace = isset( $params['namespace'] ) ? str_replace( ',', '|', $params['namespace'] ) : null;
+
+		// Build the query
+		$search = MediaWikiServices::getInstance()->getSearchEngineFactory()->create();
+
+		$namespace = $params['namespace'] ?? null;
+		if ( $namespace ) {
+			$namespaces = explode( ',', $namespace );
+			$search->setNamespaces( $namespaces );
+		}
+
+		$sort = $params['sort'] ?? null;
+		if ( $sort ) {
+			$search->setSort( $sort );
+		}
+
 		$limit = $params['limit'] ?? null;
 		$offset = $params['offset'] ?? null;
-		$profile = $params['profile'] ?? null;
-		$what = $params['what'] ?? 'text';
-		$info = isset( $params['info'] ) ? str_replace( ',', '|', $params['info'] ) : null;
-		$prop = isset( $params['prop'] ) ? str_replace( ',', '|', $params['prop'] ) : null;
-		$interwiki = $params['interwiki'] ?? null;
-		$rewrites = $params['rewrites'] ?? null;
-		$sort = $params['sort'] ?? null;
-		$format = isset( $params['format'] ) ? strtolower( $params['format'] ) : null;
+		if ( $limit || $offset ) {
+			$limit = (int)$limit;
+			$offset = (int)$offset;
+			$search->setLimitOffset( $limit, $offset );
+		}
 
-		// Build query
-		$query = [
-			'format' => 'json',
-			'formatversion' => 2,
-			'action' => 'query',
-			'list' => 'search',
-			'srsearch' => $search,
-			'srnamespace' => $namespace,
-			'srlimit' => $limit,
-			'sroffset' => $offset,
-			'srqiprofile' => $profile,
-			'srwhat' => $what,
-			'srinfo' => $info,
-			'srprop' => $prop,
-			'srinterwiki' => $interwiki,
-			'srenablerewrites' => $rewrites,
-			'srsort' => $sort,
-		];
-		$query = array_filter( $query );
+		$rewrite = $params['rewrite'] ?? null;
+		if ( $rewrite ) {
+			$rewrite = (bool)$rewrite;
+			$search->setFeatureData( 'rewrite', $rewrite );
+		}
+
+		$interwiki = $params['interwiki'] ?? null;
+		if ( $interwiki ) {
+			$interwiki = (bool)$interwiki;
+			$search->setFeatureData( 'interwiki', $interwiki );
+		}
 
 		// Allow others to modify the query
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->run( 'SearchParserFunctionQuery', [ &$query, $params ] );
+		$hookContainer->run( 'SearchParserFunctionQuery', [ &$search, &$params ] );
 
-		// Make API call
-		$context = RequestContext::getMain();
-		$request = $context->getRequest();
-		$derivative = new DerivativeRequest( $request, $query );
-		$api = new ApiMain( $derivative );
-		$api->execute();
-
-		// Extract search results
-		$result = $api->getResult();
-		$data = $result->getResultData();
-		if ( array_key_exists( 'error', $data ) ) {
-			return self::error( 'search-error', $data['error']['info'] );
+		// Do the search
+		$what = $params['what'] ?? null;
+		if ( $what === 'title' ) {
+			$results = $search->searchTitle( $query );
+		} else {
+			$results = $search->searchText( $query );
 		}
-		$results = $data['query']['search'];
 
-		// Filter stuff that are not search results
-		$results = array_filter( $results, 'is_array' );
-
-		// Filter the current title
-		$results = array_filter( $results, static function ( $result ) use ( $parser ) {
-			return $result['title'] !== $parser->getTitle()->getFullText();
+		// Filter the current page
+		$titles = $results->extractTitles();
+		$titles = array_filter( $titles, static function ( $title ) use ( $parser ) {
+			return !$parser->getTitle()->equals( $title );
 		} );
 
-		// If no results, return nothing, because any other response may be
-		// mistaken for a search result by templates, Lua modules, etc
-		if ( !$results ) {
-			return '';
-		}
-
-		// Build output
+		// Build the output according to the preferred format
 		$output = '';
+		$format = $params['format'] ?? null;
 		switch ( $format ) {
 
 			default:
 				$links = $params['links'] ?? true;
 				$links = filter_var( $links, FILTER_VALIDATE_BOOLEAN );
 				$output = '<ul>';
-				foreach ( $results as $result ) {
-					$title = $result['title'];
+				foreach ( $titles as $title ) {
+					$titleText = $title->getFullText();
 					if ( $links ) {
-						$title = "[[:$title]]";
+						$titleText = "[[:$titleText]]";
 					}
-					$output .= "<li>$title</li>";
+					$output .= "<li>$titleText</li>";
 				}
 				$output .= '</ul>';
 				break;
 
 			case 'count':
-				$count = $data['query']['searchinfo']['totalhits'];
-				$count--; // Don't count the current page
-				$output = $count;
+				$output = count( $titles );
 				break;
 
 			case 'plain':
 				$separator = $params['separator'] ?? ', ';
-				$titles = [];
-				foreach ( $results as $result ) {
-					$title = $result['title'];
-					$titles[] = $title;
+				$titleTexts = [];
+				foreach ( $titles as $title ) {
+					$titleText = $title->getFullText();
+					$titleTexts[] = $titleText;
 				}
-				$output = implode( $separator, $titles );
+				$output = implode( $separator, $titleTexts );
 				break;
 
 			case 'json':
@@ -138,38 +125,10 @@ class SearchParserFunction {
 				if ( !$template ) {
 					return self::error( 'searchparserfunction-no-template' );
 				}
-				foreach ( $results as $result ) {
-					$ns = $result['ns'];
-					$title = $result['title'];
-					$pageid = $result['pageid'];
-					$size = $result['size'];
-					$wordcount = $result['wordcount'];
-					$timestamp = $result['timestamp'];
-					$snippet = $result['snippet'];
-					$titlesnippet = $result['titlesnippet'] ?? '';
-					$redirecttitle = $result['redirecttitle'] ?? '';
-					$redirectsnippet = $result['redirectsnippet'] ?? '';
-					$sectiontitle = $result['sectiontitle'] ?? '';
-					$sectionsnippet = $result['sectionsnippet'] ?? '';
-					$isfilematch = $result['isfilematch'] ?? '';
-					$categorysnippet = $result['categorysnippet'] ?? '';
-					$extensiondata = $result['extensiondata'] ?? '';
-
+				foreach ( $titles as $title ) {
+					$titleText = $title->getFullText();
 					$output .= "{{ $template
-					| ns = $ns
-					| title = $title
-					| size = $size
-					| wordcount = $wordcount
-					| timestamp = $timestamp
-					| snippet = $snippet
-					| titlesnippet = $titlesnippet
-					| redirecttitle = $redirecttitle
-					| redirectsnippet = $redirectsnippet
-					| sectiontitle = $sectiontitle
-					| sectionsnippet = $sectionsnippet
-					| isfilematch = $isfilematch
-					| categorysnippet = $categorysnippet
-					| extensiondata = $extensiondata
+					| 1 = $titleText
 					}}";
 				}
 				$output = $parser->recursivePreprocess( $output );
