@@ -156,6 +156,10 @@ class SearchParserFunction {
 
 	/**
 	 * Helper method to print an error message
+	 *
+	 * @param Message|string $message Message key
+	 * @param string|null $param Message parameter
+	 * @return string
 	 */
 	private static function error( $message, $param = null ) {
 		$error = wfMessage( $message, $param );
