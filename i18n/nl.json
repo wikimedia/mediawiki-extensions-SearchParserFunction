@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"searchparserfunction-desc": "Voegt een parserfunctie toe om resultaten op wikipagina’s te zoeken, op te maken en weer te geven",
+	"searchparserfunction-no-query": "Geef een zoekterm op.",
+	"searchparserfunction-no-template": "De parameter ‘template’ is vereist bij gebruik van het sjabloonformaat."
+}
