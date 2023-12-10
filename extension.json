@@ -1,6 +1,6 @@
 {
 	"name": "SearchParserFunction",
-	"version": "2.0",
+	"version": "2.1",
 	"author": "[https://www.mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Extension:SearchParserFunction",
 	"descriptionmsg": "searchparserfunction-desc",
