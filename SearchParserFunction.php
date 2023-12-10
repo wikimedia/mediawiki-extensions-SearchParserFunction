@@ -36,7 +36,11 @@ class SearchParserFunction {
 
 		$namespace = $params['namespace'] ?? null;
 		if ( $namespace ) {
-			$namespaces = explode( ',', $namespace );
+			if ( $namespace === '*' ) {
+				$namespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces();
+			} else {
+				$namespaces = explode( ',', $namespace );
+			}
 			$search->setNamespaces( $namespaces );
 		}
 
