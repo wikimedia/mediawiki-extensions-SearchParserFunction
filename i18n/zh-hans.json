@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"沈澄心"
+		]
+	},
+	"searchparserfunction-desc": "添加解析器功能以在wiki页面中搜索、格式化和显示结果",
+	"searchparserfunction-no-query": "请包含搜索词。",
+	"searchparserfunction-no-template": "使用模板格式时需要“template”参数。"
+}
