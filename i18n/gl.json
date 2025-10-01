@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"searchparserfunction-desc": "Engade unha función de analizador sintáctico para buscar, formatar e mostrar resultados en páxinas do wiki.",
+	"searchparserfunction-no-query": "Inclúe un termo de busca.",
+	"searchparserfunction-no-template": "O parámetro «template» é obrigatorio ao usar o formato de modelo."
+}
