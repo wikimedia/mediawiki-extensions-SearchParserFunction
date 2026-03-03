@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"JeffreyKim"
+		]
+	},
+	"searchparserfunction-desc": "加入一個解析器函數，用嚟喺維基頁面搜尋、格式化同顯示結果",
+	"searchparserfunction-no-query": "請輸入搜尋字詞。",
+	"searchparserfunction-no-template": "使用template嘅格式嗰陣，'template' 參數係必須嘅。"
+}
