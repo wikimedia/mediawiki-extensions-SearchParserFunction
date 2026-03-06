@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"searchparserfunction-desc": "په ويکي‌مخونو کې د پلټلو، بڼې او پايلو ښودلو لپاره تجزيه‌کوونکې کړنچاره ورگډوي",
+	"searchparserfunction-no-query": "مهرباني وکړئ د پلټلو گړنه راونغاړئ.",
+	"searchparserfunction-no-template": "د 'template' پاراميتر د کينډۍ بڼې کارولو پرمهال اړين دی."
+}
