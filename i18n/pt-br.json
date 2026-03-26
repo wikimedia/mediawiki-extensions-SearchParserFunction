@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eduardoaddad"
+		]
+	},
+	"searchparserfunction-desc": "Adiciona uma função de análise para pesquisar, formatar e exibir resultados em páginas wiki",
+	"searchparserfunction-no-query": "Insira um termo de pesquisa.",
+	"searchparserfunction-no-template": "O parâmetro 'template' é obrigatório ao usar o formato de predefinição."
+}
