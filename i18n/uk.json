@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Repakr"
+		]
+	},
+	"searchparserfunction-desc": "Додає парсерну функцію для пошуку, оформлення та відображення результатів у вікісторінках",
+	"searchparserfunction-no-query": "Будь ласка, вкажіть пошуковий термін.",
+	"searchparserfunction-no-template": "Параметр «template» є обов'язковим при використанні формату шаблону."
+}

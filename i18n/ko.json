@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Tensama0415"
+		]
+	},
+	"searchparserfunction-desc": "위키 페이지에서 검색, 서식 지정 및 결과 표시를 위한 파서 함수를 추가합니다.",
+	"searchparserfunction-no-query": "검색어를 입력해 주세요.",
+	"searchparserfunction-no-template": "틀 형식을 사용할 때는 'template' 매개변수가 필수입니다."
+}
