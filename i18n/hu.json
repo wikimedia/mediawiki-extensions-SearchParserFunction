@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dj"
+		]
+	},
+	"searchparserfunction-desc": "Parserfüggvényt ad hozzá a találatok kereséséhez, formázásához és wikilapokon való megjelenítéséhez",
+	"searchparserfunction-no-query": "Adj meg egy keresőkifejezést.",
+	"searchparserfunction-no-template": "A sablonformátum használatakor kötelező megadni a „template” paramétert."
+}
