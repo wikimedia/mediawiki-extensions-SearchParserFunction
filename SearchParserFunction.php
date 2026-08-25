@@ -33,12 +33,13 @@ class SearchParserFunction {
 		$params = self::parseParams( $params );
 
 		// Build the query
-		$search = MediaWikiServices::getInstance()->getSearchEngineFactory()->create();
+		$services = MediaWikiServices::getInstance();
+		$search = $services->getSearchEngineFactory()->create();
 
 		$namespace = $params['namespace'] ?? null;
 		if ( $namespace ) {
 			if ( $namespace === '*' ) {
-				$namespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces();
+				$namespaces = $services->getNamespaceInfo()->getValidNamespaces();
 			} else {
 				$namespaces = explode( ',', $namespace );
 			}
@@ -71,7 +72,7 @@ class SearchParserFunction {
 		}
 
 		// Allow others to modify the query
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookContainer = $services->getHookContainer();
 		$hookContainer->run( 'SearchParserFunctionQuery', [ &$search, &$params ] );
 
 		// Do the search
@@ -97,9 +98,7 @@ class SearchParserFunction {
 
 		// Filter the current page
 		$titles = $results->extractTitles();
-		$titles = array_filter( $titles, static function ( $title ) use ( $parser ) {
-			return !$parser->getTitle()->equals( $title );
-		} );
+		$titles = array_filter( $titles, static fn ( $title ) => !$parser->getTitle()->equals( $title ) );
 
 		// Build the output according to the preferred format
 		$output = '';

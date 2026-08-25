@@ -1,13 +1,13 @@
 {
 	"name": "SearchParserFunction",
-	"version": "2.1",
+	"version": "2.2",
 	"author": "[https://www.mediawiki.org/wiki/User:Sophivorus Sophivorus]",
 	"url": "https://www.mediawiki.org/wiki/Extension:SearchParserFunction",
 	"descriptionmsg": "searchparserfunction-desc",
 	"license-name": "GPL-3.0-or-later",
 	"type": "parserhook",
 	"requires": {
-		"MediaWiki": ">= 1.40.0"
+		"MediaWiki": ">= 1.45.0"
 	},
 	"MessagesDirs": {
 		"SearchParserFunction": [
