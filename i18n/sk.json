@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"searchparserfunction-desc": "Pridáva funkciu syntaktického analyzátora na vyhľadávanie, formátovanie a zobrazovanie výsledkov vo wiki stránkach",
+	"searchparserfunction-no-query": "Zadajte, prosím, hľadaný výraz.",
+	"searchparserfunction-no-template": "Pri použití formátu template je potrebný parameter „template“."
+}
